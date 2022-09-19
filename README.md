@@ -152,6 +152,12 @@ wget https://artifacts.picoctf.net/c/138/drawing.flag.svg
 cat drawing.flag.svg | grep "</tspan>" | cut -d ">" -f2 | cut -d "<" -f1 | tr -d "\n" | tr -d " "
 ```
 
+As an aside, if you open the image in Inkscape and zoom in to the tiny circle in the middle of the image, you will eventually see the [SVG Text](https://www.w3schools.com/graphics/svg_text.asp)
+![Enhanced image](/PicoCTF2022-Forensics/docs/assets/images/enhance_zoomedin.png)
+
+You can also view the XML in XML Editor:
+![Inkscape XML Editor](/PicoCTF2022-Forensics/docs/assets/images/Inkscape XML Editor.png)
+
 
 
 =======================================================================================
