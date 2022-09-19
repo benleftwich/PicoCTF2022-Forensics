@@ -138,10 +138,20 @@ Viewing the contents of the file shows us the following text;
 </svg>
 ```
 
+This image was created using Inkscape.
+
 From looking at the output, you can see the text is contained within the "tspan" tags lying within the "text" tags. By joining them you get the flag:
 > picoCTF{3nh4nc3d_6783cc46}
 
 Note that you can also find this by opening the file in browser and using ctrl-A to select all, and then ctrl-F to search. The flag is revealed in the search box. The whitespace in the flag can be removed using CyberChef.
+
+On YouTube, [John Hammond](https://www.youtube.com/watch?v=dbKwngknixo) shows a simple bash script to pull out the flag:
+```
+#!/bin/bash
+wget https://artifacts.picoctf.net/c/138/drawing.flag.svg
+cat drawing.flag.svg | grep "</tspan>" | cut -d ">" -f2 | cut -d "<" -f1 | tr -d "\n" | tr -d " "
+```
+
 
 
 =======================================================================================
