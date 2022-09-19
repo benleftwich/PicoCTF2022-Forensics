@@ -153,6 +153,7 @@ cat drawing.flag.svg | grep "</tspan>" | cut -d ">" -f2 | cut -d "<" -f1 | tr -d
 ```
 
 As an aside, if you open the image in Inkscape and zoom in to the tiny circle in the middle of the image, you will eventually see the SVG Text:
+
 ![Enhanced image](/PicoCTF2022-Forensics/docs/assets/images/enhance_zoomedin.png)
 
 You can also view the XML in XML Editor:
