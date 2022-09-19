@@ -1,5 +1,5 @@
 # PicoCTF2022-Forensics
-
+=======================================================================================
 ### Enhance!
 AUTHOR: LT 'SYREAL' JONES
 
@@ -138,5 +138,36 @@ Viewing the contents of the file shows us the following text;
 </svg>
 ```
 
-From looking at the output, you can see the text is contained within the id values "tspan". By joining them you get the flag:
+From looking at the output, you can see the text is contained within the "tspan" tags lying within the "text" tags. By joining them you get the flag:
 > picoCTF{3nh4nc3d_6783cc46}
+Note that you can also find this by opening the file in browser and using ctrl-A to select all, and then ctrl-F to search. The flag is revealed in the search box. The whitespace in the flag can be removed using CyberChef.
+=======================================================================================
+### File Types
+
+AUTHOR: GEOFFREY NJOGU
+
+Description:
+This file was found among some files marked confidential but my pdf reader cannot read it, maybe yours can.
+You can download the file from [here](https://artifacts.picoctf.net/c/325/Flag.pdf).
+
+First checking what kind of file it is: 
+```
+$  file Flag.pdf 
+Flag.pdf: shell archive text
+```
+"A shell archive or shar file is a single file that contains one or more other files. Files are extracted from the archive with the standard UNIX Bourne shell docstore.mik.ua/orelly/unix/upt/ch19_02.htm"
+You can extract the files using the sh command: 
+```
+$ sh Flag.pdf 
+Flag.pdf: line 18: md5sum: command not found
+Note: not verifying md5sums.  Consider installing GNU coreutils.
+sed: --print-text-domain-dir: No such file or directory
+x - created lock directory _sh00046.
+x - extracting flag (text)
+x - removed lock directory _sh00046.
+```
+This created a file called flag in the current directory:
+```
+$ file flag
+flag: current ar archive
+```
