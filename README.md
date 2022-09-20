@@ -181,64 +181,118 @@ You can extract the files using the sh command:
 
 ```
 $ sudo apt install sharutils
+$ ls -sh flag.shar
+8.0K flag.shar
 $ sh Flag.pdf
+x - created lock directory _sh00046.
+x - extracting flag (text)
+x - removed lock directory _sh00046.
 $ ls
+flag  flag.shar
 $ file flag
+flag: current ar archive
 $ mv flag flag.ar
+$ ls -sh flag.ar
+4.0K flag.ar
 $ ar -x flag.ar
 $ ls
+flag  flag.ar  flag.shar
 $ file flag
+flag: cpio archive
 $ mv flag flag.cpio
+$ ls -sh flag.cpio
+4.0K flag.cpio
 $ cpio -i --file flag.cpio
+2 blocks
 $ ls
+flag  flag.ar  flag.cpio  flag.shar
 $ file flag
+flag: bzip2 compressed data, block size = 900k
 $ mv flag flag.bz2
+$ ls -sh flag.bz2
+4.0K flag.bz2
 $ bunzip2 flag.bz2
 $ ls
+flag  flag.ar  flag.cpio  flag.shar
 $ file flag
+flag: gzip compressed data, was "flag", last modified: Tue Mar 15 06:50:41 2022, from Unix, original size modulo 2^32 326
 $ mv flag flag.gz
+$ ls -sh flag.gz
+4.0K flag.gz
 $ gunzip flag.gz
 $ ls
+flag  flag.ar  flag.cpio  flag.shar
 $ file flag
+flag: lzip compressed data, version: 1
 $ mv flag flag.lzip
+$ ls -sh flag.lzip
+4.0K flag.lzip
 $ sudo apt install lzip
 $ lzip -d flag.lzip
 $ ls
+flag.ar  flag.cpio  flag.lzip.out  flag.shar
 $ file flag.lzip.out
+flag.lzip.out: LZ4 compressed data (v1.4+)
 $ mv flag.lzip.out flag.lz4
+$ ls -sh flag.lz4
+4.0K flag.lz4
 $ sudo apt install lz4
 $ lz4 -d flag.lz4
+Decoding file flag 
+flag.lz4             : decoded 263 bytes 
 $ ls
+flag  flag.ar  flag.cpio  flag.lz4  flag.shar
 $ file flag
+flag: LZMA compressed data, non-streamed, size 253
 $ mv flag flag.lzma
-$ ls
+$ ls -sh flag.lzma
+4.0K flag.lzma
 $ xz -d flag.lzma
 $ ls
+flag  flag.ar  flag.cpio  flag.lz4  flag.shar
 $ file flag
+flag: lzop compressed data - version 1.040, LZO1X-1, os: Unix
 $ mv flag flag.lzop
+$ ls -sh flag.lzop
+4.0K flag.lzop
 $ sudo apt install lzop
 $ lzop -d flag.lzop
 $ ls
+flag  flag.ar  flag.cpio  flag.lz4  flag.lzop  flag.shar
 $ file flag
+flag: lzip compressed data, version: 1
 $ mv flag flag.lz
+$ ls -sh flag.lz
+4.0K flag.lz
 $ lzip -d flag.lz
 $ ls
+flag  flag.ar  flag.cpio  flag.lz4  flag.lzop  flag.shar
 $ file flag
+flag: XZ compressed data, checksum CRC64
 $ mv flag flag.xz
+$ ls -sh flag.xz
+4.0K flag.xz
 $ unxz flag.xz
 $ ls
+flag  flag.ar  flag.cpio  flag.lz4  flag.lzop  flag.shar
 $ file flag
+flag: ASCII text
 $ mv flag flag.txt
+$ ls -sh flag.txt
+4.0K flag.txt
 $ cat flag.txt
 7069636f4354467b66316c656e406d335f6d406e3170756c407431306e5f
 6630725f3062326375723137795f39353063346665657d0a
+```
+This is hexadecimal and can be decoded in CyberChef, or on the command line using xxd:
+```
 $ cat flag.txt | xxd -r -p
 picoCTF{f1len@m3_m@n1pul@t10n_f0r_0b2cur17y_950c4fee}
 ```
 
 
 
-
+If you want to use a python script to decode the hexadecimal:
 ```
 #!/usr/bin/env python3
 string = "7069636f4354467b66316c656e406d335f6d406e3170756c407431306e5f6630725f3062326375723137795f39353063346665657d0a"
