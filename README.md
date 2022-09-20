@@ -177,13 +177,14 @@ Flag.pdf: shell archive text
 $ mv Flag.pdf flag.shar
 ```
 "A shell archive or shar file is a single file that contains one or more other files. Files are extracted from the archive with the standard UNIX Bourne shell"
+While the shar format has the advantage of being plain text, it poses a risk due to being executable;[2] for this reason the older and more general tar file format is usually preferred even for transferring text files. GNU provides its own version of shar in the GNU Sharutils collection.
 You can extract the files using the sh command: 
 
 ```
 $ sudo apt install sharutils
 $ ls -sh flag.shar
 8.0K flag.shar
-$ sh Flag.pdf
+$ sh flag.shar
 x - created lock directory _sh00046.
 x - extracting flag (text)
 x - removed lock directory _sh00046.
@@ -194,6 +195,11 @@ flag: current ar archive
 $ mv flag flag.ar
 $ ls -sh flag.ar
 4.0K flag.ar
+```
+The archiver, also known simply as ar, is a Unix utility that maintains groups of files as a single archive file.
+ar - create, modify, and extract from archives
+The GNU ar program creates, modifies, and extracts from archives. An archive is a single file holding a collection of other files in a structure that makes it possible to retrieve the original individual files (called members of the archive).
+```
 $ ar -x flag.ar
 $ ls
 flag  flag.ar  flag.shar
@@ -202,6 +208,11 @@ flag: cpio archive
 $ mv flag flag.cpio
 $ ls -sh flag.cpio
 4.0K flag.cpio
+```
+cpio is a general file archiver utility and its associated file format.
+cpio - copy files to and from archives
+GNU cpio is a tool for creating and extracting archives, or copying files from one place to another. It handles a number of cpio formats as well as reading and writing tar files.
+```
 $ cpio -i --file flag.cpio
 2 blocks
 $ ls
@@ -211,6 +222,9 @@ flag: bzip2 compressed data, block size = 900k
 $ mv flag flag.bz2
 $ ls -sh flag.bz2
 4.0K flag.bz2
+```
+bzip2 is a free and open-source file compression program that uses the Burrows–Wheeler algorithm. It only compresses single files and is not a file archiver. 
+```
 $ bunzip2 flag.bz2
 $ ls
 flag  flag.ar  flag.cpio  flag.shar
@@ -219,6 +233,11 @@ flag: gzip compressed data, was "flag", last modified: Tue Mar 15 06:50:41 2022,
 $ mv flag flag.gz
 $ ls -sh flag.gz
 4.0K flag.gz
+```
+gzip is a file format and a software application used for file compression and decompression. 
+gzip, gunzip, zcat - compress or expand files
+
+```
 $ gunzip flag.gz
 $ ls
 flag  flag.ar  flag.cpio  flag.shar
@@ -227,6 +246,11 @@ flag: lzip compressed data, version: 1
 $ mv flag flag.lzip
 $ ls -sh flag.lzip
 4.0K flag.lzip
+```
+lzip is a free, command-line tool for the compression of data; it employs the Lempel–Ziv–Markov chain algorithm (LZMA) with a user interface that is familiar to users of usual Unix compression tools, such as gzip and bzip2.
+The file that is produced by lzip is usually given .lz as its filename extension, and the data is described by the media type application/lzip.
+
+```
 $ sudo apt install lzip
 $ lzip -d flag.lzip
 $ ls
@@ -236,6 +260,11 @@ flag.lzip.out: LZ4 compressed data (v1.4+)
 $ mv flag.lzip.out flag.lz4
 $ ls -sh flag.lz4
 4.0K flag.lz4
+```
+LZ4 is a lossless data compression algorithm that is focused on compression and decompression speed. It belongs to the LZ77 family of byte-oriented compression schemes.
+unlz4 is equivalent to lz4 -d
+
+```
 $ sudo apt install lz4
 $ lz4 -d flag.lz4
 Decoding file flag 
@@ -247,6 +276,10 @@ flag: LZMA compressed data, non-streamed, size 253
 $ mv flag flag.lzma
 $ ls -sh flag.lzma
 4.0K flag.lzma
+```
+The Lempel–Ziv–Markov chain algorithm (LZMA) is an algorithm used to perform lossless data compression.
+
+```
 $ xz -d flag.lzma
 $ ls
 flag  flag.ar  flag.cpio  flag.lz4  flag.shar
@@ -255,6 +288,10 @@ flag: lzop compressed data - version 1.040, LZO1X-1, os: Unix
 $ mv flag flag.lzop
 $ ls -sh flag.lzop
 4.0K flag.lzop
+```
+lzop is a free software file compression tool which implements the LZO algorithm and is licensed under the GPL.
+lzop is a file compressor very similar to gzip. lzop favors speed over compression ratio.
+```
 $ sudo apt install lzop
 $ lzop -d flag.lzop
 $ ls
@@ -264,6 +301,10 @@ flag: lzip compressed data, version: 1
 $ mv flag flag.lz
 $ ls -sh flag.lz
 4.0K flag.lz
+```
+
+
+```
 $ lzip -d flag.lz
 $ ls
 flag  flag.ar  flag.cpio  flag.lz4  flag.lzop  flag.shar
