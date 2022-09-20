@@ -174,20 +174,74 @@ First checking what kind of file it is:
 ```
 $  file Flag.pdf 
 Flag.pdf: shell archive text
+$ mv Flag.pdf flag.shar
 ```
-"A shell archive or shar file is a single file that contains one or more other files. Files are extracted from the archive with the standard UNIX Bourne shell docstore.mik.ua/orelly/unix/upt/ch19_02.htm"
+"A shell archive or shar file is a single file that contains one or more other files. Files are extracted from the archive with the standard UNIX Bourne shell"
 You can extract the files using the sh command: 
+
 ```
-$ sh Flag.pdf 
-Flag.pdf: line 18: md5sum: command not found
-Note: not verifying md5sums.  Consider installing GNU coreutils.
-sed: --print-text-domain-dir: No such file or directory
-x - created lock directory _sh00046.
-x - extracting flag (text)
-x - removed lock directory _sh00046.
-```
-This created a file called flag in the current directory:
-```
+$ sudo apt install sharutils
+$ sh Flag.pdf
+$ ls
 $ file flag
-flag: current ar archive
+$ mv flag flag.ar
+$ ar -x flag.ar
+$ ls
+$ file flag
+$ mv flag flag.cpio
+$ cpio -i --file flag.cpio
+$ ls
+$ file flag
+$ mv flag flag.bz2
+$ bunzip2 flag.bz2
+$ ls
+$ file flag
+$ mv flag flag.gz
+$ gunzip flag.gz
+$ ls
+$ file flag
+$ mv flag flag.lzip
+$ sudo apt install lzip
+$ lzip -d flag.lzip
+$ ls
+$ file flag.lzip.out
+$ mv flag.lzip.out flag.lz4
+$ sudo apt install lz4
+$ lz4 -d flag.lz4
+$ ls
+$ file flag
+$ mv flag flag.lzma
+$ ls
+$ xz -d flag.lzma
+$ ls
+$ file flag
+$ mv flag flag.lzop
+$ sudo apt install lzop
+$ lzop -d flag.lzop
+$ ls
+$ file flag
+$ mv flag flag.lz
+$ lzip -d flag.lz
+$ ls
+$ file flag
+$ mv flag flag.xz
+$ unxz flag.xz
+$ ls
+$ file flag
+$ mv flag flag.txt
+$ cat flag.txt
+7069636f4354467b66316c656e406d335f6d406e3170756c407431306e5f
+6630725f3062326375723137795f39353063346665657d0a
+$ cat flag.txt | xxd -r -p
+picoCTF{f1len@m3_m@n1pul@t10n_f0r_0b2cur17y_950c4fee}
+```
+
+
+
+
+```
+#!/usr/bin/env python3
+string = "7069636f4354467b66316c656e406d335f6d406e3170756c407431306e5f6630725f3062326375723137795f39353063346665657d0a"
+byte_array = bytearray.fromhex(string)
+print(byte_array.decode())
 ```
