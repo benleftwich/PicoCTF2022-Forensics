@@ -432,7 +432,8 @@ By selecting the text in the PDF, you can view the flag:
 
 You can also install and use pdftotext
 ```
-$ pdftotext Financial_Report_for_ABC_Labs.pdf                                                                                                                                                             $ ls
+$ pdftotext Financial_Report_for_ABC_Labs.pdf                                                                                                                                                            
+$ ls
 Financial_Report_for_ABC_Labs.pdf  Financial_Report_for_ABC_Labs.txt
 $ cat Financial_Report_for_ABC_Labs.txt | grep pico
 picoCTF{C4n_Y0u_S33_m3_fully}
