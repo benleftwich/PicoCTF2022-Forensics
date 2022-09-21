@@ -159,7 +159,25 @@ As an aside, if you open the image in Inkscape and zoom in to the tiny circle in
 You can also view the XML in XML Editor:
 ![Inkscape XML Editor](/PicoCTF2022-Forensics/docs/assets/images/Inkscape XML Editor.png)
 
+Python script:
+'''
+import re
 
+pattern = '^.*tspan.*">(.*)<\/tspan>'
+
+a = []
+
+for line in open('text.txt'):
+	matches = re.finditer(pattern, line)
+	for match in matches:
+		#for index in range(0, match.lastindex+1):
+		a.append(match.group(1))
+print(a)
+
+for element in range(0,len(a)):
+      a[element] = a[element].replace(" ", "")
+print(''.join(a))
+'''
 
 =======================================================================================
 ### File Types
