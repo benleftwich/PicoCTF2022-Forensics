@@ -359,3 +359,54 @@ string = "7069636f4354467b66316c656e406d335f6d406e3170756c407431306e5f6630725f30
 byte_array = bytearray.fromhex(string)
 print(byte_array.decode())
 ```
+=======================================================================================
+### Lookey here
+
+AUTHOR: LT 'SYREAL' JONES / MUBARAK MIKAIL
+
+Description
+Attackers have hidden information in a very large mass of data in the past, maybe they are still doing it.
+
+```
+$ wget https://artifacts.picoctf.net/c/296/anthem.flag.txt
+$ ls
+anthem.flag.txt
+
+$ file anthem.flag.txt 
+anthem.flag.txt: UTF-8 Unicode text
+
+$ cat anthem.flag.txt| wc -l
+2146
+
+$ cat anthem.flag.txt | grep pico
+we think that the men of picoCTF{gr3p_15_@w3s0m3_2116b979}
+
+```
+=======================================================================================
+### Packets Primer
+
+AUTHOR: LT 'SYREAL' JONES
+
+Description
+Download the packet capture file and use packet analysis software to find the flag.
+
+```
+$ wget https://artifacts.picoctf.net/c/201/network-dump.flag.pcap
+$ file network-dump.flag.pcap 
+network-dump.flag.pcap: pcap capture file, microsecond ts (little-endian) - version 2.4 (Ethernet, capture length 262144)
+```
+We can use wireshark to view this pcap file:
+```
+$ wireshark -r network-dump.flag.pcap &
+```
+This shows a packet capture with only 9 total packets. 
+If you select any of the first five packets by right clicking > Follow > TCP Stream, this will show you the flag.
+![Following the TCP Stream](/PicoCTF2022-Forensics/docs/assets/images/FollowTCPStream.png)
+This was sent in packet 4 from 10.0.2.15 to 10.0.2.4.
+![Packet 4 data](/PicoCTF2022-Forensics/docs/assets/images/Packet4.png)
+
+You can remove the whitespace using CyberChef, or the following bash script will extract the string directly and remove whitespace: 
+```
+#!/bin/bash
+strings network-dump.flag.pcap | grep "p i c o"| tr -d ' '
+```
