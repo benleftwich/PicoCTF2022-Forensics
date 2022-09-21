@@ -160,7 +160,7 @@ You can also view the XML in XML Editor:
 ![Inkscape XML Editor](/PicoCTF2022-Forensics/docs/assets/images/Inkscape XML Editor.png)
 
 Python script:
-'''
+```
 import re
 
 pattern = '^.*tspan.*">(.*)<\/tspan>'
@@ -177,7 +177,7 @@ print(a)
 for element in range(0,len(a)):
       a[element] = a[element].replace(" ", "")
 print(''.join(a))
-'''
+```
 
 =======================================================================================
 ### File Types
