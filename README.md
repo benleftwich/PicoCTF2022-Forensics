@@ -161,13 +161,14 @@ You can also view the XML in XML Editor:
 
 Python script:
 ```
+#!/usr/bin/env python3
 import re
 
 pattern = '^.*tspan.*">(.*)<\/tspan>'
 
 a = []
 
-for line in open('text.txt'):
+for line in open('drawing.flag.svg'):
 	matches = re.finditer(pattern, line)
 	for match in matches:
 		#for index in range(0, match.lastindex+1):
