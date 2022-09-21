@@ -429,3 +429,12 @@ You can view PDFs in Kali using atril
 ![Opening PDF File](/PicoCTF2022-Forensics/docs/assets/images/redaction_gone_wrong.png)
 By selecting the text in the PDF, you can view the flag:
 ![Viewing the flag](/PicoCTF2022-Forensics/docs/assets/images/redaction_gone_wrong_solution.png)
+
+You can also install and use pdftotext
+```
+$ pdftotext Financial_Report_for_ABC_Labs.pdf                                                                                                                                                             $ ls
+Financial_Report_for_ABC_Labs.pdf  Financial_Report_for_ABC_Labs.txt
+$ cat Financial_Report_for_ABC_Labs.txt | grep pico
+picoCTF{C4n_Y0u_S33_m3_fully}
+
+```
