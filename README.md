@@ -410,3 +410,22 @@ You can remove the whitespace using CyberChef, or the following bash script will
 #!/bin/bash
 strings network-dump.flag.pcap | grep "p i c o"| tr -d ' '
 ```
+=======================================================================================
+
+### Redaction Gone Wrong
+AUTHOR: MUBARAK MIKAIL
+
+Description
+Now you DON’T see me.
+This report has some critical data in it, some of which have been redacted correctly, while some were not. Can you find an important key that was not redacted properly?
+```
+$ wget https://artifacts.picoctf.net/c/264/Financial_Report_for_ABC_Labs.pdf
+$ ls
+Financial_Report_for_ABC_Labs.pdf
+$ file Financial_Report_for_ABC_Labs.pdf 
+Financial_Report_for_ABC_Labs.pdf: PDF document, version 1.7, 1 pages
+```
+You can view PDFs in Kali using atril
+![Opening PDF File](/PicoCTF2022-Forensics/docs/assets/images/redaction_gone_wrong.png)
+By selecting the text in the PDF, you can view the flag:
+![Viewing the flag](/PicoCTF2022-Forensics/docs/assets/images/redaction_gone_wrong_solution.png)
